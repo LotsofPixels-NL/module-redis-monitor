@@ -1,31 +1,19 @@
 <?php
 /* @var Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General $block */
+
 use Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General;
 
 ?>
 <h2> Redis Monitor</h2>
 <table>
     <tr>
-        <th>Redis port</th>
-        <th>Used memory</th>
-        <th>Total Memory</th>
-        <th>Percentage</th>
-        <th>Peak Percentage</th>
-    </tr>
-    <tr>
-
-    </tr>
-    <tr>
-
+        <td>
+            <?= $block->renderOutput1(); ?>
+        </td>
+        <td>
+            <?= $block->renderOutput2(); ?>
+        </td>
     </tr>
 </table>
-<?php
-$memory1 = $block->getRedisCli1();
-$memory2 = $block->getRedisCli2();
-echo 'Output 1 <br>';
-foreach ($memory1 as $key1 => $memoryline1) {echo $key1 . " = " . $memoryline1 . "<br>";}
 
-echo '</p>' . 'Output 2 <br>';
-foreach ($memory2 as $key2 => $memoryline2) {echo $key2 . " = " . $memoryline2 . "<br>";}
-echo '<<br>port 1:' . $block->getRedisport1();
-echo '<br>port 2:' . $block->getRedisport2();
+

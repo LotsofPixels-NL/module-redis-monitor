@@ -65,18 +65,16 @@ class General extends Template implements RendererInterface
     }
 
     /**
-     * @return array
+     * @return string|array
      */
-    public function getRedisCli1(): array
+    public function getRedisCli1(): string|array
     {
         $redisport1 = $this->getRedisport1();
         $redisoutput1 = [];
         $clicommmand1 = 'redis-cli -p ' . $redisport1 . ' info memory';
         $redismemory1 = shell_exec($clicommmand1);
         if (is_null($redismemory1)) {
-            $redisoutput1 ['redisport'] = $redisport1;
-            $redisoutput1 ['Error'] = 'Could not connect to Redis at ' . $redisport1 . 'Connection refused';
-            return $redisoutput1;
+            return 'error';
         } else {
             $output1 = preg_split('/\s+/', trim($redismemory1));
 
@@ -96,18 +94,16 @@ class General extends Template implements RendererInterface
     }
 
     /**
-     * @return array
+     * @return string
      */
-    public function getRedisCli2(): array
+    public function getRedisCli2(): string|array
     {
         $redisport2 = $this->getRedisport2();
         $redisoutput2 = [];
         $clicommmand2 = 'redis-cli -p ' . $redisport2 . ' info memory';
         $redismemory2 = shell_exec($clicommmand2);
         if (is_null($redismemory2)) {
-            $redisoutput2 ['redisport'] = $redisport2;
-            $redisoutput2 ['Error'] = 'Could not connect to Redis at ' . $redisport2 . 'Connection refused';
-            return $redisoutput2;
+            return 'error';
         } else {
             $output2 = preg_split('/\s+/', trim($redismemory2));
             $redisoutput2 = [];
@@ -124,6 +120,86 @@ class General extends Template implements RendererInterface
             }
             return $redisoutput2;
         }
+    }
+
+
+    /**
+     * @return string
+     */
+    public function renderOutput1()
+    {
+        $clidata1 = $this->getRedisCli1();
+        if ($clidata1 === "error") {
+            $tabledata1 = "<table><tr><th>Redis Instance 1</th></tr>";
+            $tabledata1 .= "
+                <tr>
+                    <td>Connection refused</td>
+
+                </tr>
+                <tr>
+                                    <td>Could not connect to Redis</td>
+</tr>
+            </table>";
+            return $tabledata1;
+        } else {
+            $tabledata1 = "<table><tr><th>Redis Instance 1</th></tr>";
+            $tabledata1 .= "
+                <tr>
+                    <td>Max Memory</td>
+                    <td>" . $clidata1['maxmemory_human'] . "</td>
+                </tr>
+                <tr>
+                    <td>Used Memory</td>
+                    <td>" . $clidata1['used_memory_human'] . "</td>
+                </tr>
+                <tr>
+                    <td>Used Peak Memory</td>
+                    <td>" . $clidata1['used_memory_peak_human'] . "</td>
+                </tr>
+            </table>";
+            return $tabledata1;
+        }
+
+    }
+
+    /**
+     * @return string
+     */
+    public function renderOutput2()
+    {
+        $clidata2 = $this->getRedisCli2();
+        if ($clidata2 === "error") {
+            $tabledata1 = "<table><tr><th>Redis Instance 2</th></tr>";
+            $tabledata1 .= "
+                <tr>
+                    <td>Connection refused</td>
+
+                </tr>
+                <tr><td> - </td></tr>
+                <tr>
+                                    <td>Could not connect to Redis</td>
+</tr>
+            </table>";
+            return $tabledata1;
+        } else {
+            $tabledata2 = "<table><tr><th>Redis Instance 2</th></tr>";
+            $tabledata2 .= "
+                <tr>
+                    <td>Max Memory</td>
+                    <td>" . $clidata2['maxmemory_human'] . "</td>
+                </tr>
+                <tr>
+                    <td>Used Memory</td>
+                    <td>" . $clidata2['used_memory_human'] . "</td>
+                </tr>
+                <tr>
+                    <td>Used Peak Memory</td>
+                    <td>" . $clidata2['used_memory_peak_human'] . "</td>
+                </tr>
+            </table>";
+            return $tabledata2;
+        }
+
     }
 }
 
