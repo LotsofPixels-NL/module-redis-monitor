@@ -1,6 +1,6 @@
 {
   "name": "lotsofpixels/module-redis-monitor",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "N/A",
   "type": "magento2-module",
   "require": {

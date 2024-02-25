@@ -20,8 +20,12 @@ use Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General;
     </tr>
 </table>
 <?php
-$memory = $block->getRedisCli1();
+$memory1 = $block->getRedisCli1();
+$memory2 = $block->getRedisCli2();
+echo 'Output 1 <br>';
+foreach ($memory1 as $key1 => $memoryline1) {echo $key1 . " = " . $memoryline1 . "<br>";}
 
-foreach ($memory as $key => $memoryline) {echo $key . " = " . $memoryline . "<br>";}
-
-
+echo '</p>' . 'Output 2 <br>';
+foreach ($memory2 as $key2 => $memoryline2) {echo $key2 . " = " . $memoryline2 . "<br>";}
+echo '<<br>port 1:' . $block->getRedisport1();
+echo '<br>port 2:' . $block->getRedisport2();
