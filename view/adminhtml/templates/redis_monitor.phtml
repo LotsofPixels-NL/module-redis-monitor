@@ -1,0 +1,27 @@
+<?php
+/* @var Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General $block */
+use Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General;
+
+?>
+<h2> Redis Monitor</h2>
+<table>
+    <tr>
+        <th>Redis port</th>
+        <th>Used memory</th>
+        <th>Total Memory</th>
+        <th>Percentage</th>
+        <th>Peak Percentage</th>
+    </tr>
+    <tr>
+
+    </tr>
+    <tr>
+
+    </tr>
+</table>
+<?php
+$memory = $block->getRedisCli1();
+
+foreach ($memory as $key => $memoryline) {echo $key . " = " . $memoryline . "<br>";}
+
+

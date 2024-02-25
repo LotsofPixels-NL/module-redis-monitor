@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module/Config/etc/system_file.xsd">
+    <system>
+        <tab id="lotsofpixels" translate="label" sortOrder="1000" class="lotsofpixels-icon">
+            <label>Lots of Pixels</label>
+        </tab>
+        <section id="lotsofpixels_redis" translate="label" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Redis Monitor</label>
+            <tab>lotsofpixels</tab>
+            <resource>Lotsofpixels_Core::config</resource>
+            <group id="version" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+                <label>Version</label>
+                <field id="module_version" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Disable</frontend_model>
+                </field>
+            </group>
+            <group id="config" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="0">
+            <label>Settings</label>
+                <field id="redis_port1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Redis port 1</label>
+                </field>
+
+                <field id="redis_port2" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Redis port 2</label>
+                    </field>
+            </group>
+            <group id="redismonitor" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+
+                <frontend_model>Lotsofpixels\RedisMonitor\Block\Adminhtml\System\Config\Fieldset\General</frontend_model>
+            </group>
+        </section>
+    </system>
+</config>
